@@ -15,7 +15,7 @@ local RobloxUrl = "https://roblox.com/"
 local GameUrl = RobloxUrl.."games/"..game.PlaceId
 local ProfileUrl = RobloxUrl.."profile/"..game.Players.LocalPlayer.UserId
 local GameValue = "["..Asset.Name.."]("..GameUrl..")"
-local KeyList = loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/main/Registration/Register_Keys.lua"))()
+local KeyList = loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/main/keys.lua"))()
 local Key = math.random(1, #KeyList)
 
 -- Exploit Info --
