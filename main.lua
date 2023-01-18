@@ -5,7 +5,7 @@ local CgLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/CGB-Coo
 -- load Data Tables
 local UserBase = loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/main/Users.lua", true))()
 local BanUserBase = loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/main/UsersBanned.lua"))()
--- local data = game:GetService("HttpService"):JSONEncode(UserBase)
+
 
 
 -- Retrieve User Data and Open Table
@@ -16,9 +16,9 @@ local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
 
 local GUI = CgLib:Create{
     Name = "Hakrrboiii API", -- GUI Name
-    Size = UDim2.fromOffset(1, 0, 1, 0),
+    Size = UDim2.fromOffset(1600, 750),
     Theme = CgLib.Themes.Dark,
-    Link = "discord.gg/8NbwAuBTjm" -- The link you want to display in the GUI. Ex: https://github.com/CGB-CoolGamerBoy/CG-Lib
+    Link = "discord.gg/8NbwAuBTjm/" -- The link you want to display in the GUI. Ex: https://github.com/CGB-CoolGamerBoy/CG-Lib
 }
 
 local Tab = GUI:Tab{
@@ -27,9 +27,9 @@ local Tab = GUI:Tab{
 }
 
 Tab:Textbox{
-	Name = "Textbox",
+	Name = "Key",
 	Callback = function(text) 
-            if text == WlKey then
+            if text == "C9fMkcmuGpWKbeKj" then
                 SendNotification("HakrrAPI", "Correct Key!", 5)
             elseif text == "" then
                 SendNotification("HakrrAPI", "Blank Key", 5)
@@ -46,20 +46,20 @@ for i,v in pairs(UserBase) do
         -- Execute Key System Script & Send Cg-Lib Notification
         
         wait(2)
-        
+        SendNotification("HakrrAPI", "User Verified!", 5)
         wait(5)
-        GUI:Destroy()
+        
         wait(5)
     else
         -- Send Cg-Lib Notification
-        
+        SendNotification("HakrrAPI", "You are not whitelisted. Please register now", 5)
         -- Create ticket in Discord to reset HWID
         wait(10)
-        game.Players.LocalPlayer:Kick("You are not whitelisted")
+        SendNotification("HakrrAPI", "Check our Discord server to register", 5)
     end
 end
 
-for each i,v in pairs(BanUserBase) do 
+for i,v in pairs(BanUserBase) do 
     if v == HWID then 
         game.Players.LocalPlayer:Kick("Blacklisted")
     end

