@@ -1,6 +1,6 @@
 -- Required locals
 
-Webhook_URL = "https://discord.com/api/webhooks/1045952435128107019/wl7bceDv_GEl2Yep0oQcLelh8MgWtUfNPJeOec-G18qB_v3UcJfh28GjmRwnmMTl7g8R"
+Webhook_URL = loadstring(game:HttpGet("github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/Main/Webhook.lua"))()
 HttpService = game:GetService("HttpService")
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 local DiscordUrl = "discord.gg/8NbwAuBTjm"
@@ -8,8 +8,10 @@ local KeyList = loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB
 
 -- Player and Game/Client Info --
 
+local LocalPlayer = game.Players.LocalPlayer
+
 local Player = game.Players.LocalPlayer.Name
-local PlayerId = game.Players.LocalPlayer.UserId
+local PlayerId = LocalPlayer.UserId
 local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
 local RobloxUrl = "https://roblox.com/"
 local GameUrl = RobloxUrl.."games/"..game.PlaceId

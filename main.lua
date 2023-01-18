@@ -3,17 +3,15 @@ local CgLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/CGB-Coo
 
 
 -- load Data Tables
-local UserBase = loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/main/Users.json", true))()
+local UserBase = loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/main/Users.lua", true))()
 
-data = game:GetService("HttpService"):JSONEncode(UserBase)
+-- local data = game:GetService("HttpService"):JSONEncode(UserBase)
+local data = json.decode(UserBase)
 
 -- Retrieve User Data and Open Table
-local localUserName = data.Users[localUserName]
-local localHWID = localUserName[HWID]
-local isBlacklisted = localUserName[IsBlacklisted]
-local reason = localUserName[blReason]
-local WlKey = localUserData[Key]
 
+local whitelist = data.Whitelisted
+local blacklist = data.Blacklisted
 
 local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
 
@@ -44,37 +42,22 @@ Tab:Textbox{
 
 
 
-if localUserData then
-    print("[Auth] " .. localUserName .. "  was found")
-
-    if userData.HWID == HWID then
-        print("[Auth] User found; HWID matched")
-
-        if isBlacklisted == false then
-            print("[Auth] User is licensed")
-
-            SendNotification("HakrrAPI", "Whitelisted!")
-
-        else
-            SendNotification("HakrrAPI", localUserName .. ", you are blacklisted", 5)
-            SendNotification("HakrrAPI", reason, 10)
-
-            wait(30)
-
-            game.Players.LocalPlayer:Kick("Blacklist reason: " .. reason)
-        end
-
-        return true
+for i,v in pairs(whitelist) do
+    if v == HWID then
+        -- Execute Key System Script & Send Cg-Lib Notification
+        S
+        wait(2)
+        
+        wait(5)
+        GUI:Destroy()
+        wait(5)
     else
-        print("[Auth] User found; HWID mismatched")
-        return false
+        -- Send Cg-Lib Notification
+        
+        -- Create ticket in Discord to reset HWID
+        wait(10)
+        game.Players.LocalPlayer:Kick("You are not whitelisted")
     end
-else
-    print("[Auth] " .. localUserName .. " was not found")
-    
-    SendNotification("HakrrAPI", "User not found", 5)
-    loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/main/Register.lua"))()
-    return false
 end
 
 function SendNotification(Title, Text, Duration)
