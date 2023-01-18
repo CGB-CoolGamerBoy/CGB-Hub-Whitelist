@@ -4,14 +4,13 @@ local CgLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/CGB-Coo
 
 -- load Data Tables
 local UserBase = loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/main/Users.lua", true))()
-
+local BanUserBase = loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/main/UsersBanned.lua"))()
 -- local data = game:GetService("HttpService"):JSONEncode(UserBase)
-local data = json.decode(UserBase)
+
 
 -- Retrieve User Data and Open Table
 
-local whitelist = data.Whitelisted
-local blacklist = data.Blacklisted
+
 
 local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
 
@@ -42,10 +41,10 @@ Tab:Textbox{
 
 
 
-for i,v in pairs(whitelist) do
+for i,v in pairs(UserBase) do
     if v == HWID then
         -- Execute Key System Script & Send Cg-Lib Notification
-        S
+        
         wait(2)
         
         wait(5)
@@ -59,6 +58,13 @@ for i,v in pairs(whitelist) do
         game.Players.LocalPlayer:Kick("You are not whitelisted")
     end
 end
+
+for each i,v in pairs(BanUserBase) do 
+    if v == HWID then 
+        game.Players.LocalPlayer:Kick("Blacklisted")
+    end
+end
+
 
 function SendNotification(Title, Text, Duration)
 	GUI:Notification{

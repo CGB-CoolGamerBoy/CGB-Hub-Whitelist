@@ -1,6 +1,6 @@
 -- Required locals
 
-Webhook_URL = loadstring(game:HttpGet("github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/Main/Webhook.lua"))()
+Webhook_URL = loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/main/Webhook.lua"))()
 HttpService = game:GetService("HttpService")
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 local DiscordUrl = "discord.gg/8NbwAuBTjm"
@@ -45,47 +45,14 @@ local TicketMsg =
 
 function Result() 
 	wait(2)
-	if KRNL_LOADED then
-		rconsoleclear()
-		rconsolename("Krnl | CGB")
-	elseif syn then
-		rconsoleclear()
-		rconsoletitle("Synapse X | CGB")
-		rconsoleinfo("[Syn] Console Loaded\n\n\n")
-		wait(5)
-		rconsoleclear()
-	elseif identifyexecutor() then
-		rconsoleclear()
-		rconsoletitle("["..identifyexecutor().."] Console Loaded")
-		wait(5)
-		rconsoleclear()
-	end
-	rconsoleprint("[CGB] ")
-	rconsoleprint("@@RED@@")
-	rconsoleprint("Discord: "..DiscordUrl)
-	rconsoleprint("\n")
-	wait(2)
-	rconsoleprint("@@WHITE@@")
-	rconsoleprint("[CGB] Discord has been copied")
-	wait(1)
-	rconsoleprint("\n")
-	rconsoleprint("[CGB] Please create a ticket in Discord to finish registration")
-	rconsoleprint("\n\n")
-	rconsoleprint(TicketMsg)
-end
-
-function DisInfo()
-    if syn or identifyexecutor() then
-        Result()
-        wait(5)
-        setclipboard(TicketMsg)		
-    elseif KRNL_LOADED then
-		Result()
-		setclipboard(TicketMsg)
-		wait(30)
-		rconsoleclose()
+	game:GetService("GuiService"):OpenBrowserWindow("https://google.com")
+    if syn or KRNL_LOADED or identifyexecutor() then
+        _G.discord_invite = "8NbwAuBTjm"
+		loadstring(game:HttpGet("https://cgb-coolgamerboy.github.io/CGB-CoolGamerBoy/CGBHub/Discord.lua", true))()
     end
 end
+
+
 
 
 -- Http Info
@@ -143,5 +110,5 @@ local headers = {
 local sendMsg = {Url = url, Body = newdata, Method = "POST", Headers = headers}
 
 Http(sendMsg)
-wait(10)
-DisInfo()
+wait(5)
+Result()
