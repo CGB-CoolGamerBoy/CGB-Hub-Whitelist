@@ -1,32 +1,17 @@
-local json = require("JSON")
 
-local function LoadLibrary(libraryString)
-	local success, library = pcall(loadstring(libraryString))
-	if success then
-		return library
-	else
-		error(library)
-	end
-end
-
-
-local http = game:GetService("HttpService")
-local libraryString = http:GetAsync("https://raw.githubusercontent.com/CGB-CoolGamerBoy/CG-Lib/master/src.lua")
-
-
-local CgLib = LoadLibrary(libraryString)
+local CgLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/CGB-CoolGamerBoy/CG-Lib/master/src.lua"))()
 
 
 -- load Data Tables
-local UserBase = loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/main/UserData.json", true))()
-local data = json.decode(UserBase)
+local UserBase = loadstring(game:HttpGet("https://github.com/CGB-CoolGamerBoy/CGB-Hub-Whitelist/raw/main/Users.json", true))()
+
+data = game:GetService("HttpService"):JSONEncode(UserBase)
 
 -- Retrieve User Data and Open Table
 local localUserName = data.Users[localUserName]
 local localHWID = localUserName[HWID]
-local isBlacklisted = localUserName[isBlacklisted]
+local isBlacklisted = localUserName[IsBlacklisted]
 local reason = localUserName[blReason]
-local localUserData = data.Users[localUserName]
 local WlKey = localUserData[Key]
 
 
@@ -47,10 +32,17 @@ local Tab = GUI:Tab{
 Tab:Textbox{
 	Name = "Textbox",
 	Callback = function(text) 
-             if text == WlKey
+            if text == WlKey then
                 SendNotification("HakrrAPI", "Correct Key!", 5)
+            elseif text == "" then
+                SendNotification("HakrrAPI", "Blank Key", 5)
+            else
+                SendNotification("HakrrAPI", "Incorrect Key!", 5)
+            end 
         end
 }
+
+
 
 if localUserData then
     print("[Auth] " .. localUserName .. "  was found")
@@ -58,7 +50,7 @@ if localUserData then
     if userData.HWID == HWID then
         print("[Auth] User found; HWID matched")
 
-        if isBlacklisted == false 
+        if isBlacklisted == false then
             print("[Auth] User is licensed")
 
             SendNotification("HakrrAPI", "Whitelisted!")
