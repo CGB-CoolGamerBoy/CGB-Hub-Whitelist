@@ -31,6 +31,13 @@ Tab:Textbox{
 	Callback = function(text) 
             if text == "C9fMkcmuGpWKbeKj" then
                 SendNotification("HakrrAPI", "Correct Key!", 5)
+                
+                wait(5)
+                
+                local TeleportService = game:GetService("TeleportService")
+                SendNotification("HakrrAPI", "Closing Login", 5)
+                TeleportService.TeleportToPlaceInstance(TeleportService, game.PlaceId, game.JobId)
+            
             elseif text == "" then
                 SendNotification("HakrrAPI", "Blank Key", 5)
             else
